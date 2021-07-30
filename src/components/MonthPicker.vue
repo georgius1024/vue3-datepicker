@@ -6,22 +6,23 @@ import dayjs from "dayjs";
 export default {
   name: "MonthPicker",
   props: {
-    value: {
+    modelValue: {
       type: Object,
       required: true,
     },
   },
   computed: {
     date() {
-      return dayjs(this.value);
+      return dayjs(this.modelValue);
     },
     month() {
       return this.date.month() + 1
     }
   },
   methods: {
-    input(month) {
-      this.$emit('input', this.date.month(month-1).toDate());
+    input(event) {
+      const month = event.target.value
+      this.$emit('update:modelValue', this.date.month(month-1).toDate());
     }
   }
 };

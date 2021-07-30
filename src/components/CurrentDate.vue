@@ -1,14 +1,14 @@
 <template>
   <div class="current-date">
-    <span>&laquo;</span>
+    <span @click="prevMonth" class="button">&laquo;</span>
     |
     <span class="date">{{dayOfMonth}}</span>
     |
-    <MonthPicker :value="date" @input="$emit($event)"/>
+    <MonthPicker :modelValue="date" @update:modelValue="input"/>
     |
-    <YearPicker :value="date" @input="$emit($event)"/>
+    <YearPicker :modelValue="date" @update:modelValue="input"/>
     |
-    <span>&raquo;</span>
+    <span @click="nextMonth" class="button">&raquo;</span>
   </div>
 </template>
 <script>
@@ -22,18 +22,30 @@ export default {
     YearPicker
   },
   props: {
-    value: {
+    modelValue: {
       type: Object,
       required: true,
     },
   },
   computed: {
     date() {
-      return dayjs(this.value);
+      return dayjs(this.modelValue);
     },
     dayOfMonth() {
       return this.date.date()
     },
+  },
+  methods: {
+    prevMonth() {
+      this.$emit('update:modelValue', this.date.subtract(1, 'month').toDate());
+    },
+    nextMonth() {
+      this.$emit('update:modelValue', this.date.add(1, 'month').toDate());
+    },
+    input(value) {
+      this.$emit('update:modelValue', value);
+    }
   }
+
 }
 </script>

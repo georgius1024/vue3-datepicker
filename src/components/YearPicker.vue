@@ -13,22 +13,23 @@ import dayjs from "dayjs";
 export default {
   name: "YearPicker",
   props: {
-    value: {
+    modelValue: {
       type: Object,
       required: true,
     },
   },
   computed: {
     date() {
-      return dayjs(this.value);
+      return dayjs(this.modelValue);
     },
     year() {
       return this.date.year();
     },
   },
   methods: {
-    input(year) {
-      this.$emit("input", this.date.year(year).toDate());
+    input(event) {
+      const year = event.target.value
+      this.$emit("update:modelValue", this.date.year(year).toDate());
     },
   },
 };

@@ -1,8 +1,9 @@
+$primary: #ff0000;
+$text: #333333;
 .calendar {
   font-size: 1rem;
   display: flex;
-  width: 14rem;
-  margin: 0 auto;
+  width: 2.5*7rem;
   flex-direction: column;
   .row {
     display: flex;
@@ -11,11 +12,34 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 2rem;
-      height: 1.2rem;
-      &:hover {
-        background-color: red;
+      width: 2.5rem;
+      height: 1.4rem;
+      cursor: pointer;
+      &.blind {
+        color: lighten($text, 30%)
       }
+      &.current {
+        background-color: lighten($primary, 20%);
+        color: lighten($text, 60%)
+      }
+      &:hover {
+        background-color: lighten($primary, 40%);
+        color: darken($text, 60%)
+      }
+    }
+  }
+}
+.current-date {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 2.5*7rem;
+  justify-content: space-around;
+  .button {
+    cursor: pointer;
+    &:hover {
+      background-color: lighten($primary, 40%);
+      color: darken($text, 60%)
     }
   }
 }

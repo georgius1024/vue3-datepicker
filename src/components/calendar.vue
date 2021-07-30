@@ -1,8 +1,8 @@
 <template>
-  <p>{{ today }}</p>
   <div class="calendar">
     <div v-for="(week, weekIndex) in month" class="row" :key="weekIndex">
-      <div v-for="(day, dayIndex) in week" class="cell" :key="dayIndex" @click="input(day.date)">
+      <div v-for="(day, dayIndex) in week" class="cell" :key="dayIndex" @click="input(day.date)"
+      :class="{blind: !day.sameMonth, current: day.current}">
         {{ day.monthDay }}
       </div>
     </div>
@@ -19,14 +19,14 @@ dayjs.locale("ru");
 export default {
   name: "Calendar",
   props: {
-    value: {
+    modelValue: {
       type: Object,
       required: true,
     },
   },
   computed: {
     date() {
-      return dayjs(this.value);
+      return dayjs(this.modelValue);
     },
     today() {
       return this.date.format("L");
@@ -34,7 +34,7 @@ export default {
     month() {
       const start = dayjs(this.date).startOf("month").startOf("week");
       const end = dayjs(this.date).endOf("month").endOf("week");
-      const weeks = end.diff(start, "week");
+      const weeks = Math.ceil(end.diff(start, "week", true));
       const result = [];
       for (let week = 0; week < weeks; week++) {
         let days = [];
@@ -42,7 +42,8 @@ export default {
           const date = start.add(week * 7 + weekDay, "day");
           const sameMonth = date.isSame(this.date, "month");
           const monthDay = date.date();
-          days.push({ date, sameMonth, monthDay });
+          const current = date.isSame(this.modelValue, 'day')
+          days.push({ date, sameMonth, monthDay, current });
         }
         result.push(days);
       }
@@ -51,7 +52,7 @@ export default {
   },
   methods: {
     input(value) {
-      this.$emit("input", value.toDate());
+      this.$emit("update:modelValue", value.toDate());
     },
   },
 };

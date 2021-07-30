@@ -1,7 +1,9 @@
 <template>
 <h1>C-APP</h1>
-<CurrentDate v-model="date"/>
-<calendar v-model="date"/>
+<div>
+  <CurrentDate v-model="date"/>
+  <calendar v-model="date"/>
+</div>
 </template>
 
 <script>
