@@ -1,0 +1,21 @@
+.calendar {
+  font-size: 1rem;
+  display: flex;
+  width: 14rem;
+  margin: 0 auto;
+  flex-direction: column;
+  .row {
+    display: flex;
+    flex-direction: row;
+    .cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 1.2rem;
+      &:hover {
+        background-color: red;
+      }
+    }
+  }
+}
