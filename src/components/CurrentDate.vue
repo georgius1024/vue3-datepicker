@@ -1,13 +1,9 @@
 <template>
   <div class="current-date">
     <span @click="prevMonth" class="button">&laquo;</span>
-    |
     <span class="date">{{dayOfMonth}}</span>
-    |
     <MonthPicker :modelValue="date" @update:modelValue="update"/>
-    |
     <YearPicker :modelValue="date" @update:modelValue="update"/>
-    |
     <span @click="nextMonth" class="button">&raquo;</span>
   </div>
 </template>

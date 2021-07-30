@@ -1,6 +1,7 @@
 $primary: #ff0000;
 $text: #333333;
 .calendar {
+  margin: 1rem;
   font-size: 1rem;
   display: flex;
   width: 2.5*7rem;
@@ -30,6 +31,7 @@ $text: #333333;
   }
 }
 .current-date {
+  margin: 1rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -42,4 +44,20 @@ $text: #333333;
       color: darken($text, 60%)
     }
   }
+}
+
+.popup-wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(2px);
+}
+.popup-frame {
+  position: fixed;
+  z-index: 100;
+  padding: 0.5rem;
+  border: 1px solid lighten($text, 50%);
+  box-shadow: 4px 4px 8px 0px rgba(80, 80, 80, 0.2)
 }
