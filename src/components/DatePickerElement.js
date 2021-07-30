@@ -1,14 +1,9 @@
 import dayjs from "dayjs";
 export default {
-  props: {
-    modelValue: {
-      type: Object,
-      required: true,
-    },
-  },
+  inject: ["getCurrentDate", "setCurrentDate"],
   computed: {
     date() {
-      return dayjs(this.modelValue);
+      return dayjs(this.getCurrentDate());
     },
     month() {
       return this.date.month() + 1
@@ -19,11 +14,10 @@ export default {
     day() {
       return this.date.date()
     }
-
   },
   methods: {
     update(value) {
-      this.$emit('update:modelValue', dayjs(value).toDate());      
+      this.setCurrentDate(dayjs(value).toDate()); 
     }
   }
 }

@@ -29,7 +29,7 @@ export default {
           const date = start.add(week * 7 + weekDay, "day");
           const sameMonth = date.isSame(this.date, "month");
           const monthDay = date.date();
-          const current = date.isSame(this.modelValue, 'day')
+          const current = date.isSame(this.date, 'day')
           days.push({ date, sameMonth, monthDay, current });
         }
         result.push(days);

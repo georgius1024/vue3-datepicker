@@ -26,7 +26,22 @@ export default {
     return {
       date: new Date()
     }
+  },
+  provide() {
+    return {
+      getCurrentDate: this.getCurrentDate,
+      setCurrentDate: this.setCurrentDate,
+    };
+  },
+  methods: {
+    getCurrentDate() {
+      return this.date;
+    },
+    setCurrentDate(value) {
+      this.date = value
+    },
   }
+
 
 }
 </script>
