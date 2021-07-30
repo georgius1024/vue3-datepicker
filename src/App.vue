@@ -7,6 +7,12 @@
 </template>
 
 <script>
+import dayjs from "dayjs";
+import localizedFormat from "dayjs/plugin/localizedFormat";
+import "dayjs/locale/ru";
+dayjs.extend(localizedFormat);
+dayjs.locale("ru");
+
 import './assets/calendar.scss'
 import calendar from './components/calendar.vue'
 import CurrentDate from './components/CurrentDate.vue'

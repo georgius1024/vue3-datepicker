@@ -1,7 +1,7 @@
 <template>
   <div class="calendar">
     <div v-for="(week, weekIndex) in month" class="row" :key="weekIndex">
-      <div v-for="(day, dayIndex) in week" class="cell" :key="dayIndex" @click="input(day.date)"
+      <div v-for="(day, dayIndex) in week" class="cell" :key="dayIndex" @click="update(day.date)"
       :class="{blind: !day.sameMonth, current: day.current}">
         {{ day.monthDay }}
       </div>
@@ -10,24 +10,11 @@
 </template>
 <script>
 import dayjs from "dayjs";
-import localizedFormat from "dayjs/plugin/localizedFormat";
-import "dayjs/locale/ru";
-
-dayjs.extend(localizedFormat);
-dayjs.locale("ru");
-
+import DatePickerElement from './DatePickerElement'
 export default {
   name: "Calendar",
-  props: {
-    modelValue: {
-      type: Object,
-      required: true,
-    },
-  },
+  extends: DatePickerElement,
   computed: {
-    date() {
-      return dayjs(this.modelValue);
-    },
     today() {
       return this.date.format("L");
     },
@@ -49,11 +36,6 @@ export default {
       }
       return result;
     },
-  },
-  methods: {
-    input(value) {
-      this.$emit("update:modelValue", value.toDate());
-    },
-  },
+  }
 };
 </script>

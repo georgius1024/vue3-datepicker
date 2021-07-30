@@ -4,46 +4,35 @@
     |
     <span class="date">{{dayOfMonth}}</span>
     |
-    <MonthPicker :modelValue="date" @update:modelValue="input"/>
+    <MonthPicker :modelValue="date" @update:modelValue="update"/>
     |
-    <YearPicker :modelValue="date" @update:modelValue="input"/>
+    <YearPicker :modelValue="date" @update:modelValue="update"/>
     |
     <span @click="nextMonth" class="button">&raquo;</span>
   </div>
 </template>
 <script>
-import dayjs from "dayjs";
+import DatePickerElement from './DatePickerElement'
 import MonthPicker from './MonthPicker.vue'
 import YearPicker from './YearPicker.vue'
 export default {
   name: 'CurrentDate',
+  extends: DatePickerElement,
   components: {
     MonthPicker,
     YearPicker
   },
-  props: {
-    modelValue: {
-      type: Object,
-      required: true,
-    },
-  },
   computed: {
-    date() {
-      return dayjs(this.modelValue);
-    },
     dayOfMonth() {
       return this.date.date()
     },
   },
   methods: {
     prevMonth() {
-      this.$emit('update:modelValue', this.date.subtract(1, 'month').toDate());
+      this.update(this.date.subtract(1, 'month').toDate());
     },
     nextMonth() {
-      this.$emit('update:modelValue', this.date.add(1, 'month').toDate());
-    },
-    input(value) {
-      this.$emit('update:modelValue', value);
+      this.update(this.date.add(1, 'month').toDate());
     }
   }
 

@@ -10,26 +10,17 @@
 </template>
 <script>
 import dayjs from "dayjs";
+import DatePickerElement from './DatePickerElement'
+
 export default {
   name: "YearPicker",
-  props: {
-    modelValue: {
-      type: Object,
-      required: true,
-    },
-  },
+  extends: DatePickerElement,
   computed: {
-    date() {
-      return dayjs(this.modelValue);
-    },
-    year() {
-      return this.date.year();
-    },
   },
   methods: {
     input(event) {
       const year = event.target.value
-      this.$emit("update:modelValue", this.date.year(year).toDate());
+      this.update(this.date.year(year));
     },
   },
 };
