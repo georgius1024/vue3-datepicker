@@ -13,6 +13,8 @@ import localizedFormat from "dayjs/plugin/localizedFormat";
 import "dayjs/locale/ru";
 dayjs.extend(localizedFormat);
 dayjs.locale("ru");
+import './assets/dark-theme.scss'
+//import "./assets/calendar.scss";
 
 import DatePicker from './components/DatePicker.vue'
 export default {

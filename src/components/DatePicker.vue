@@ -8,7 +8,6 @@
   </Popup>
 </template>
 <script>
-import "../assets/calendar.scss";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import "dayjs/locale/ru";
