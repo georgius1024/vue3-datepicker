@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     close(e) {
-      if (!this.$refs.popup.contains(e.target)) {
+      if (this.modelValue && !this.$refs.popup.contains(e.target)) {
         this.$emit("update:modelValue", false);
         e.stopPropagation()
       }

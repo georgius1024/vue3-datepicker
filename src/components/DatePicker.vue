@@ -5,6 +5,7 @@
   <Popup v-model="active" :top="top" :left="left">
     <CurrentDate v-model="date" />
     <calendar v-model="date" @click="dateSelected" />
+    <slot name="footer"></slot>
   </Popup>
 </template>
 <script>
@@ -40,6 +41,11 @@ export default {
       top: 0,
       left: 0,
     };
+  },
+  computed: {
+    wrappedDate() {
+      return dayjs(this.date)
+    }
   },
   mounted() {
     this.date = this.modelValue;

@@ -3,7 +3,13 @@
 <div>
   <DatePicker v-model="date">
     <button>{{today}}</button>
+    <template v-slot:footer>
+      <Tomorrow/>
+    </template>
   </DatePicker>
+  <CustomDatePicker v-model="date">
+    <button>{{today}}</button>
+  </CustomDatePicker>
 </div>
 </template>
 
@@ -13,14 +19,18 @@ import localizedFormat from "dayjs/plugin/localizedFormat";
 import "dayjs/locale/ru";
 dayjs.extend(localizedFormat);
 dayjs.locale("ru");
-import './assets/dark-theme.scss'
-//import "./assets/calendar.scss";
+//import './assets/dark-theme.scss'
+import "./assets/calendar.scss";
 
 import DatePicker from './components/DatePicker.vue'
+import CustomDatePicker from './CustomDatePicker.vue'
+import Tomorrow from './Tomorrow.vue'
 export default {
   name: 'C-App',
   components: {
     DatePicker,
+    CustomDatePicker,
+    Tomorrow
   },
   data() {
     return {

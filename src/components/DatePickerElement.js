@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 export default {
-  inject: ["getCurrentDate", "setCurrentDate"],
+  inject: ["getCurrentDate", "setCurrentDate", "deactivate", "commit"],
   computed: {
     date() {
       return dayjs(this.getCurrentDate());
